@@ -1,0 +1,46 @@
+type User @table {
+  email: String!
+  displayName: String!
+  photoUrl: String
+  createdAt: Timestamp!
+}
+
+type TaskList @table {
+  user: User!
+  name: String!
+  color: String!
+  icon: String
+  createdAt: Timestamp!
+}
+
+type Task @table {
+  user: User!
+  taskList: TaskList
+  title: String!
+  description: String
+  category: String!
+  priority: String!
+  dueDate: Timestamp
+  progress: Int!
+  completed: Boolean!
+  isStarred: Boolean!
+  focusHours: Float!
+  createdAt: Timestamp!
+  completedAt: Timestamp
+}
+
+type Subtask @table {
+  task: Task!
+  title: String!
+  completed: Boolean!
+}
+
+type TaskAttachment @table {
+  task: Task!
+  name: String!
+  size: Int!
+  url: String!
+  storagePath: String!
+  mimeType: String!
+  uploadedAt: Timestamp!
+}
